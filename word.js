@@ -52,13 +52,32 @@ function addWord(word) {
     o = createOrAddLetter(o, lastLetter, '+')[lastLetter];
 }
 
+
+var ws = [];
+var addWs = function(word){
+    if (word.indexOf('"') > -1)
+        var a = '';
+    ws.push(word);
+};
+
+var wsToFile = function(){
+    var fileContents = "var customwords = require('./customwords');\n"
+    ws.forEach(word => {
+        fileContents += 'customwords.pushNewWords("' + word + '");\n';
+    })    
+   // fileContents += "exports.words = words;";
+
+    fs.writeFile('englishwords.js', fileContents);
+}
+
 var isReady = false;
 var s = fs.createReadStream("words.txt");
 var file = readLines(s, function (rem) {
-    addWord(rem);
+    addWs(rem);
 }, function () {
     console.log('ready');
     isReady = true;
+    wsToFile();
 });
 
 

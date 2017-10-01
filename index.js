@@ -29,18 +29,10 @@ var logNearWords = function (word) {
     suggest(word).forEach(console.log);
 }
 
+var loadEnglishWords = function(){
+    require('./englishwords.js');
+};
+
 exports.suggest = suggest;
 exports.pushNewWords = customwords.pushNewWords;
-
-// customwords.pushNewWords(["truck testing ruck"]);
-// var nw = logNearWords('rruck');
-// var nw = logNearWords('trruck');
-// var pushNewWords = customwords.pushNewWords;
-// pushNewWords('testing');
-// pushNewWords('add all words in this sentence');
-// pushNewWords(['register', 'everything', 'in this', 'array']);
-
-
-// var suggestion = suggest('tetsing');
-
-// var a = '';
+exports.loadEnglishWords = loadEnglishWords;

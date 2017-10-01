@@ -17,3 +17,20 @@ var suggestion = suggest('tetsing');
 //suggestion = ["testing"];
 
 ```
+
+Use English words
+
+```
+var loadEnglishWords = typofix.loadEnglishWords;
+var pushNewWords = typofix.pushNewWords;
+var suggest = typofix.suggest;
+
+loadEnglishWords();
+
+var suggestion = suggest('tetsing');
+//suggestion = ["testing"];
+
+//can still add custom words
+pushNewWords("maisie");
+
+```
