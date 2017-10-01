@@ -1,17 +1,23 @@
 var customwords = require('./customwords');
-var getNearCombinations = require('./conversion/near').getNearCombinations;
-var swapletters = require('./conversion/swapletter').swap;
-var removeDoubles = require('./conversion/removedoubles').removeDoubles;
+var getNearCombinations = require('./conversion/near').convert;
+var swapletters = require('./conversion/swapletter').convert;
+var addDoubles = require('./conversion/adddoubles').convert;
+var removeDoubles = require('./conversion/removedoubles').convert;
+var commoncombinations = require('./conversion/commoncombinations').convert;
+var convert = require('./conversion/convert').convert;
 
 var suggest = function (word) {
     if (word == null)
         return [];
 
-    var nearComb = getNearCombinations(word);
-    var withSwapped = swapletters(word);
-    var withDoublesRemoved = removeDoubles(word);
+    var potentialTypos = [word];
 
-    var potentialTypos = nearComb.concat(withSwapped).concat(withDoublesRemoved);
+    potentialTypos = convert(getNearCombinations, potentialTypos);
+    potentialTypos = convert(swapletters, potentialTypos);
+    potentialTypos = convert(removeDoubles, potentialTypos);
+    potentialTypos = convert(addDoubles, potentialTypos);
+    potentialTypos = convert(commoncombinations, potentialTypos);
+    
     var words = customwords.getValidWords(potentialTypos);
     return words;
 };
@@ -20,7 +26,7 @@ var suggest = function (word) {
 //     suggest(word).forEach(console.log);
 // }
 
-var loadEnglishWords = function(){
+var loadEnglishWords = function () {
     require('./englishwords.js');
 };
 

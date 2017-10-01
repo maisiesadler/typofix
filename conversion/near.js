@@ -67,15 +67,15 @@ var swapAllNearAtIndex = function (wordArray, index) {
 
     return wordArray;
 }
-var getNearCombinations = function (word) {
-    var wordArray = [word];
+var getNearCombinations = (word) => {
+    var words = [];
     for (var i = 0; i < word.length; i++) {
         var wa = swapAllNearAtIndex([word], i);
-        wa.forEach(w => wordArray.push(w));
+        wa.forEach(w => words.push(w));
     }
 
-    return wordArray;
+    return words;
 };
 
 
-exports.getNearCombinations = getNearCombinations;
+exports.convert = getNearCombinations;

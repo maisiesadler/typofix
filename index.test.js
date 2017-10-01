@@ -15,12 +15,13 @@ var typofix = require('./index');
 
     var assertSuggestionsContains = function (registerWords, incorrectSpelling, expectedSuggestion) {
         pushNewWords(registerWords);
-        assert.notEqual(suggest(incorrectSpelling).indexOf(expectedSuggestion), -1);
+        assert.notEqual(suggest(incorrectSpelling).indexOf(expectedSuggestion), -1, incorrectSpelling + " is not corrected to " + expectedSuggestion);
     };
 
     assertSuggestionsContains('testing', 'tseting', 'testing');
     assertSuggestionsContains('testing', 'testinf', 'testing');
     assertSuggestionsContains('testing', 'testting', 'testing');
+    assertSuggestionsContains('been', 'bean', 'been');
     //assertSuggestionsContains('hello', 'helkp', 'hello');
     
 
