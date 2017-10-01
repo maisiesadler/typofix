@@ -1,8 +1,8 @@
-#Typofix
+# Typofix
 
 Corrects spelling mistakes to a list of registered words
 
-###Usage
+### Usage
 ```var typofix = require("typofix");
 var pushNewWords = typofix.pushNewWords;
 var suggest = typofix.suggest;
