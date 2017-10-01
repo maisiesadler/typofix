@@ -1,16 +1,7 @@
 var customwords = require('./customwords');
-var getNearCombinations = require('./near').getNearCombinations;
-var swapletters = require('./swapletter').swap;
-var removeDoubles = require('./removedoubles').removeDoubles;
-
-var waitUntilLoaded = function (onLoadedFn) {
-    if (!wordsLoaded()) {
-        //console.log('not yet loaded');
-        setTimeout(waitUntilLoaded.bind(this, onLoadedFn), 50);
-    } else {
-        onLoadedFn();
-    }
-};
+var getNearCombinations = require('./conversion/near').getNearCombinations;
+var swapletters = require('./conversion/swapletter').swap;
+var removeDoubles = require('./conversion/removedoubles').removeDoubles;
 
 var suggest = function (word) {
     if (word == null)
@@ -25,9 +16,9 @@ var suggest = function (word) {
     return words;
 };
 
-var logNearWords = function (word) {
-    suggest(word).forEach(console.log);
-}
+// var logNearWords = function (word) {
+//     suggest(word).forEach(console.log);
+// }
 
 var loadEnglishWords = function(){
     require('./englishwords.js');

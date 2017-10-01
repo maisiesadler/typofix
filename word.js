@@ -55,8 +55,6 @@ function addWord(word) {
 
 var ws = [];
 var addWs = function(word){
-    if (word.indexOf('"') > -1)
-        var a = '';
     ws.push(word);
 };
 
