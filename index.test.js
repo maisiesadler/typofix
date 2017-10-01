@@ -22,7 +22,8 @@ var typofix = require('./index');
     assertSuggestionsContains('testing', 'testinf', 'testing');
     assertSuggestionsContains('testing', 'testting', 'testing');
     assertSuggestionsContains('been', 'bean', 'been');
-    //assertSuggestionsContains('hello', 'helkp', 'hello');
+    assertSuggestionsContains('ceiling', 'cieling', 'ceiling');
+    assertSuggestionsContains('hello', 'helkp', 'hello');
     
 
     console.log('All tests passing');

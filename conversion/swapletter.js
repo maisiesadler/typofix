@@ -16,8 +16,6 @@
 //     return words;
 // };
 
-var convert = require("./convert").convert;
-
 var swapLetterCombinations = (word) => {
     var words = [];
     for (var i = 1; i < word.length; i++) {
