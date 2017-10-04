@@ -1,5 +1,6 @@
 var assert = require('assert');
 var typofix = require('./index');
+var findValid = require('./customwords').findValid;
 
 (function () {
     var pushNewWords = typofix.pushNewWords;
@@ -18,13 +19,16 @@ var typofix = require('./index');
         assert.notEqual(suggest(incorrectSpelling).indexOf(expectedSuggestion), -1, incorrectSpelling + " is not corrected to " + expectedSuggestion);
     };
 
+    assertSuggestionsContains('testing', 'tetsing', 'testing');
     assertSuggestionsContains('testing', 'tseting', 'testing');
     assertSuggestionsContains('testing', 'testinf', 'testing');
     assertSuggestionsContains('testing', 'testting', 'testing');
     assertSuggestionsContains('been', 'bean', 'been');
     assertSuggestionsContains('ceiling', 'cieling', 'ceiling');
     assertSuggestionsContains('hello', 'helkp', 'hello');
-    
+    assertSuggestionsContains('hello', 'heko', 'hello');
+    assertSuggestionsContains('scissor', 'zxizzor', 'scissor');
 
-    console.log('All tests passing');
+
+    console.log('All index tests passing');
 })();

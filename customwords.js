@@ -30,11 +30,11 @@ function addWord(word) {
     o = createOrAddLetter(o, lastLetter, '+')[lastLetter];
 };
 
-var addWords = function(wordarr){
+var addWords = function (wordarr) {
     wordarr.forEach(word => addWord(word));
 };
 
-var pushNewWords = function(words) {
+var pushNewWords = function (words) {
     if (typeof words === 'string')
         words = [words];
 
@@ -45,7 +45,6 @@ var pushNewWords = function(words) {
 
 
 var isWord = function (word) {
-    var isWord = null;
     var o = validWords;
     for (var letter of word.toLowerCase()) {
         if (o != null) {
@@ -56,7 +55,7 @@ var isWord = function (word) {
     return o != null && o.hasOwnProperty('+');
 };
 
-var getValidWords = function (potentialWordArray) {
+var getValidWordsFromArray = function (potentialWordArray) {
     var words = [];
     potentialWordArray.forEach(comb => {
         if (isWord(comb)) {
@@ -67,7 +66,13 @@ var getValidWords = function (potentialWordArray) {
     return words
 };
 
+var getValidWordObject = function () {
+    return JSON.parse(JSON.stringify(validWords));
+};
+
+
 
 exports.pushNewWords = pushNewWords;
 exports.isWord = isWord;
-exports.getValidWords = getValidWords;
+exports.getValidWordsFromArray = getValidWordsFromArray;
+exports.getValidWordObject = getValidWordObject;

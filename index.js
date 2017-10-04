@@ -1,10 +1,17 @@
 var customwords = require('./customwords');
-var getNearCombinations = require('./conversion/near').convert;
+
+//whole word conversion
 var swapletters = require('./conversion/swapletter').convert;
-var addDoubles = require('./conversion/adddoubles').convert;
 var removeDoubles = require('./conversion/removedoubles').convert;
 var commoncombinations = require('./conversion/commoncombinations').convert;
 var convert = require('./conversion/convert').convert;
+
+//letter conversion
+var findValid = require('./letterconversion/applyLetterConversion').findValid;
+var near = require('./letterconversion/near').letterGetter;
+var addDoubles = require('./letterconversion/adddoubles').letterGetter;
+var getCommonSwap = require('./letterconversion/commonletterswap').letterGetter;
+var combined = require('./letterconversion/combineConversions').combined;
 
 var suggest = function (word) {
     if (word == null)
@@ -12,13 +19,14 @@ var suggest = function (word) {
 
     var potentialTypos = [word];
 
-    potentialTypos = convert(getNearCombinations, potentialTypos);
+    var combinedLetterFn = combined(near, addDoubles, getCommonSwap);
+    var allLetterConvs = findValid(word, combinedLetterFn);
     potentialTypos = convert(swapletters, potentialTypos);
     potentialTypos = convert(removeDoubles, potentialTypos);
-    potentialTypos = convert(addDoubles, potentialTypos);
     potentialTypos = convert(commoncombinations, potentialTypos);
-    
-    var words = customwords.getValidWords(potentialTypos);
+    potentialTypos = potentialTypos.concat(allLetterConvs);
+
+    var words = customwords.getValidWordsFromArray(potentialTypos);
     return words;
 };
 
