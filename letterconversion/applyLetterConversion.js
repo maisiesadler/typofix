@@ -20,7 +20,19 @@ var findValid = function (word, letterGetter) {
     var paths = [""];
     for (var letter of word.toLowerCase()) {
         var newPaths = [];
-        var letters = letterGetter(letter);
+        if (typeof letterGetter === "function")
+            letterGetter = [letterGetter];
+
+        var letters = [];
+        letterGetter.forEach(getter => {
+            var ls = getter(letter);
+
+            ls.forEach(l => {
+                if(letters.indexOf(l) === -1)
+                    letters.push(l);
+            });
+        });
+        
         if (letters.indexOf(letter) === -1)
             letters.push(letter);
 
@@ -36,7 +48,7 @@ var findValid = function (word, letterGetter) {
         paths = newPaths;
     }
     var validWords = [];
-    paths.forEach(function(path) {
+    paths.forEach(function (path) {
         if (isWord(path))
             validWords.push(path);
     }, this);
@@ -50,18 +62,18 @@ exports.findValid = findValid;
 (function () {
     var assertTrue = function (val) {
         assert.equal(val, true);
-    }
+    };
     var assertFalse = function (val) {
         assert.equal(val, false);
-    }
+    };
     var assertContains = function (array, val) {
         assertTrue(array.indexOf(val) > -1);
-    }
+    };
     pushNewWords("testing");
     assertTrue(isStillOnTrack('test'));
     assertFalse(isStillOnTrack('tesr'));
 
-    assertContains(findValid('tdsting', function(l){return ['e']}), "testing");
+    assertContains(findValid('tdsting', function (l) { return ['e'] }), "testing");
 
-    console.log('All applyLetterConversion tests passing');
-})()
+   // console.log('All applyLetterConversion tests passing');
+})();

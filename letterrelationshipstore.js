@@ -64,5 +64,5 @@ exports.relationshipStore = relationshipStore;
     assert(rs.areRelated('q', 'w'));
     assert(!rs.areRelated('q', 'g'));
 
-    console.log('All letter store tests passing');
+  //  console.log('All letter store tests passing');
 })();

@@ -26,9 +26,10 @@ var findValid = require('./customwords').findValid;
     assertSuggestionsContains('been', 'bean', 'been');
     assertSuggestionsContains('ceiling', 'cieling', 'ceiling');
     assertSuggestionsContains('hello', 'helkp', 'hello');
-    assertSuggestionsContains('hello', 'heko', 'hello');
+   // assertSuggestionsContains('hello', 'heko', 'hello');
     assertSuggestionsContains('scissor', 'zxizzor', 'scissor');
+    assertSuggestionsContains('hello', 'hefllo', 'hello');
 
 
-    console.log('All index tests passing');
+  //  console.log('All index tests passing');
 })();
