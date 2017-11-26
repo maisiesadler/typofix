@@ -12,8 +12,8 @@ pushNewWords('testing');
 pushNewWords('add all words in this sentence');
 pushNewWords(['register', 'everything', 'in this', 'array']);
 
-var suggestion = suggest('tetsing');
-//suggestion = ["testing"];
+var suggestion = suggest('reigster');
+//suggestion = ["register"];
 ```
 
 Use English words
@@ -25,7 +25,7 @@ var suggest = typofix.suggest;
 
 loadEnglishWords();
 
-var suggestion = suggest('tetsing');
+var suggestion = suggest('tesring');
 //suggestion = ["testing"];
 
 //can still add custom words
