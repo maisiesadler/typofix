@@ -1,22 +1,3 @@
-/**
- * Create an object to store letters that are related
- * If a letter has any relations then it is stored as a key in the object
- * and the value is an object where any related letter is a key of that object.
- * 
- * For example, if a is related to b and c ->
- * {
- *    a: {
- *          b: true,
- *          c: true
- *    },
- *    b: {
- *          a: true
- *    },
- *    c: {
- *          a: true
- *    }
- * }
- */
 var relationshipStore = function () {
     var store = {};
 
@@ -70,4 +51,23 @@ var relationshipStore = function () {
     };
 };
 
+/**
+ * Create an object to store letters that are related
+ * If a letter has any relations then it is stored as a key in the object
+ * and the value is an object where any related letter is a key of that object.
+ * 
+ * For example, if a is related to b and c ->
+ * {
+ *    a: {
+ *          b: true,
+ *          c: true
+ *    },
+ *    b: {
+ *          a: true
+ *    },
+ *    c: {
+ *          a: true
+ *    }
+ * }
+ */
 exports.relationshipStore = relationshipStore;
