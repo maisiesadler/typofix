@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "Run tests",
-            "program": "${workspaceRoot}/index.test.js"
+            "program": "${workspaceRoot}/tests.js"
         },
         {
             "type": "node",

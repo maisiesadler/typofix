@@ -1,5 +1,23 @@
+/**
+ * When a word is added, each letter is added as a key to the proceeding letters object
+ * 
+ * For example, 'test' would look like this:
+ * 
+ * validWords = {
+ *     t: {
+ *         e: {
+ *             s: {
+ *                 t: { }
+ *                }
+ *            }
+ *     }
+ * }
+ * 
+ * So to see if a word is valid, we just take each letter at a time and follow the object through
+ */
+
 var validWords = {};
-function createOrAddLetter(o, letter, nextLetter) {
+function getOrAddLetter(o, letter, nextLetter) {
     var a = {};
     if (o.hasOwnProperty(letter)) {
         a = o[letter];
@@ -24,10 +42,10 @@ function addWord(word) {
             lastLetter = l;
             continue;
         }
-        o = createOrAddLetter(o, lastLetter, l)[lastLetter];
+        o = getOrAddLetter(o, lastLetter, l)[lastLetter];
         lastLetter = l;
     }
-    o = createOrAddLetter(o, lastLetter, '+')[lastLetter];
+    o = getOrAddLetter(o, lastLetter, '+')[lastLetter];
 };
 
 var addWords = function (wordarr) {

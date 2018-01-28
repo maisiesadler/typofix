@@ -1,3 +1,5 @@
+// Iterates through a file and generates a js file to push all the words to custom words
+
 var fs = require('fs');
 
 function readLines(input, func, fin) {

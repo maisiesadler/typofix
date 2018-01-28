@@ -1,0 +1,1 @@
+const addDoublesTest = require('./adddoubles.test');

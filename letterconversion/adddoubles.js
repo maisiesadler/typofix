@@ -1,4 +1,4 @@
-var letterGetter = function(letter){
+var letterGetter = function (letter) {
     return [letter + letter];
 };
 

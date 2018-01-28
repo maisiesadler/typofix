@@ -1,9 +1,24 @@
-var assert = require('assert');
-
+/**
+ * Create an object to store letters that are related
+ * If a letter has any relations then it is stored as a key in the object
+ * and the value is an object where any related letter is a key of that object.
+ * 
+ * For example, if a is related to b and c ->
+ * {
+ *    a: {
+ *          b: true,
+ *          c: true
+ *    },
+ *    b: {
+ *          a: true
+ *    },
+ *    c: {
+ *          a: true
+ *    }
+ * }
+ */
 var relationshipStore = function () {
-    var store = {
-
-    };
+    var store = {};
 
     var validateChars = function (l1, l2) {
         if (typeof (l1) !== 'string' || l1.length !== 1)
@@ -56,13 +71,3 @@ var relationshipStore = function () {
 };
 
 exports.relationshipStore = relationshipStore;
-
-
-(function () {
-    var rs = new relationshipStore();
-    rs.registerString('qwertyuiop');
-    assert(rs.areRelated('q', 'w'));
-    assert(!rs.areRelated('q', 'g'));
-
-  //  console.log('All letter store tests passing');
-})();
